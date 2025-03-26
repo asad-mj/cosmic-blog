@@ -61,6 +61,40 @@
     font-family: 'JetBrains Mono', monospace;
   }
   
+  .font-cosmic {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.03em;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 10px rgba(255, 0, 230, 0.4);
+  }
+  
+  .title-gradient {
+    @apply bg-gradient-to-r from-[#00f0ff] via-[#ff00e6] to-[#0aff9d] text-transparent bg-clip-text font-bold;
+    background-size: 200% 100%;
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
   .neon-text-cyan {
     @apply text-[#00f0ff];
     text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
@@ -108,13 +142,38 @@
     background: linear-gradient(135deg, rgba(30, 30, 42, 0.8) 0%, rgba(69, 43, 106, 0.6) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
   }
   
   .card-holographic:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 240, 255, 0.5);
-    border: 1px solid rgba(0, 240, 255, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.5);
+  }
+  
+  .card-holographic::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00f0ff, #ff00e6, #0aff9d, #ffaa00);
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .card-holographic:hover::before {
+    opacity: 0.5;
+    animation: border-animate 3s linear infinite;
+  }
+  
+  @keyframes border-animate {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
   }
   
   .category-pill {
