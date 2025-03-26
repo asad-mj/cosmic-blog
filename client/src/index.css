@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 24% 12%;
+    --foreground: 210 40% 98%;
+    
+    --card: 252 17% 15%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 252 17% 15%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 187 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    
+    --secondary: 283 100% 47%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 240 24% 23%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 283 69% 42%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 62.8% 60.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 240 24% 28%;
+    --input: 240 24% 28%;
+    --ring: 187 100% 50%;
+    
+    --chart-1: 187 100% 50%;
+    --chart-2: 283 100% 47%;
+    --chart-3: 144 100% 35%;
+    --chart-4: 39 100% 50%;
+    --chart-5: 348 83% 60%;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .neon-text-cyan {
+    @apply text-[#00f0ff];
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+  }
+  
+  .neon-text-pink {
+    @apply text-[#ff00e6];
+    text-shadow: 0 0 10px rgba(255, 0, 230, 0.8);
+  }
+  
+  .neon-text-green {
+    @apply text-[#0aff9d];
+    text-shadow: 0 0 10px rgba(10, 255, 157, 0.8);
+  }
+  
+  .neon-text-yellow {
+    @apply text-[#ffaa00];
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.8);
+  }
+  
+  .neon-border {
+    position: relative;
+  }
+  
+  .neon-border::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    border-radius: inherit;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 10px rgba(0, 240, 255, 0.3);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .neon-border:hover::after {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.6);
+  }
+  
+  .card-holographic {
+    @apply rounded-xl overflow-hidden flex flex-col;
+    background: linear-gradient(135deg, rgba(30, 30, 42, 0.8) 0%, rgba(69, 43, 106, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card-holographic:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 240, 255, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+  }
+  
+  .category-pill {
+    @apply px-4 py-2 rounded-full border border-[#2c2c42] bg-[#1e1e2a]/50 text-sm transition-all duration-300 hover:shadow-md;
+  }
+  
+  .category-pill:hover {
+    @apply bg-[#00f0ff]/20 border-[#00f0ff]/50 -translate-y-0.5;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#00f0ff] to-[#ff00e6] text-transparent bg-clip-text;
+  }
+  
+  .stars-bg {
+    @apply fixed top-0 left-0 w-full h-full pointer-events-none z-[-2] overflow-hidden;
+  }
+  
+  .star {
+    @apply absolute bg-white rounded-full opacity-80;
+    animation: twinkle 4s infinite ease-in-out;
+  }
+  
+  .meteor {
+    @apply absolute w-0.5 h-12 rotate-45;
+    background: linear-gradient(to bottom, transparent, white);
+    animation: meteor 5s linear infinite;
+  }
+  
+  .three-container {
+    @apply absolute top-0 left-0 w-full h-full z-[-1];
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes meteor {
+  0% { transform: translateX(100%) translateY(-100%); opacity: 1; }
+  100% { transform: translateX(-100%) translateY(100%); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 10px rgba(0, 240, 255, 0.3); }
+  100% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.6); }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e2a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #452b6a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5c3b8c;
+}
